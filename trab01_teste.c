@@ -42,8 +42,8 @@ int chutarLetra(char sorteada[Coluna], char *p_escondida)
     char letra;
 
     printf("\n Digite uma letra: ");
-    scanf("%c", &letra);
-    printf("\n Digitado: %c", letra);
+    scanf(" %c", &letra);
+    // printf("\n Digitado: %c", letra);
 
     len = strlen(sorteada);
     for (i = 0; i < len; i++)
@@ -73,45 +73,29 @@ void main()
     esconderPalavra(sorteada, escondida, Coluna);
 
     clrsrc();
-    printf("\n -> %s ", sorteada);
+    // printf("\n -> %s ", sorteada);
     printf("\n -> %s ", escondida);
 
-    while (tentativas > 0)
+    while (tentativas > 0 && ganhou != 1)
     {
         printf("\n Voce tem %d tentativas", tentativas);
         chute = chutarLetra(sorteada, escondida);
-        printf("\n Chute %d", chute);
         if (chute)
         {
-            printf("\n Acertou! \n %s", escondida);
+            printf("\n Acertou!");
         }
         else
         {
             printf("\n Errou!");
             tentativas--;
         }
+        printf("\n %s", escondida);
+
+        if (strstr(sorteada, escondida) != 0)
+        {
+            ganhou = 1;
+        }
     }
-
-    // while (tentativas > 0 && ganhou != 1)
-    // {
-    //     printf("\n Voce tem %d tentativas", tentativas);
-    //     chute = chutarLetra(sorteada, escondida);
-    //     printf("\n Chute %d", chute);
-    //     if (chute)
-    //     {
-    //         printf("\n Acertou! \n %s", escondida);
-    //     }
-    //     else
-    //     {
-    //         printf("\n Errou!");
-    //         tentativas--;
-    //     }
-
-    //     if (strstr(sorteada, escondida) != 0)
-    //     {
-    //         ganhou = 1;
-    //     }
-    // }
 
     if (ganhou)
     {
