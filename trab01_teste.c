@@ -4,7 +4,7 @@
 
 #define Linha 5
 #define Coluna 15
-#define clrsrc() printf("\e[1;1H\e[2J");
+#define clrsrc() system("cls");
 
 void sortearPalavra(char palavras_candidatas[Linha][Coluna], char *p, int tam)
 {
@@ -59,7 +59,7 @@ int chutarLetra(char sorteada[Coluna], char *p_escondida)
 
 void main()
 {
-    int i = 0, tentativas = 10, chute = 0;
+    int i = 0, tentativas = 10, chute = 0, ganhou = 0;
     char sorteada[Coluna] = {}, escondida[Coluna] = {};
     char banco_de_palavras[Linha][Coluna] = {
         "zebra",
@@ -72,23 +72,38 @@ void main()
     esconderPalavra(sorteada, escondida, Coluna);
 
     clrsrc();
-    // printf("\n -> %s ", sorteada);
+    printf("\n -> %s ", sorteada);
     printf("\n -> %s ", escondida);
 
-    while (i < tentativas)
-    {
-        printf("\n Voce tem %d tentativas", tentativas);
+    printf("\n Voce tem %d tentativas", tentativas);
+    chute = chutarLetra(sorteada, escondida);
+    printf("\n Chute %d", chute);
 
-        chute = chutarLetra(sorteada, escondida);
-        printf("Chute - %d", chute);
-        if (chute)
-        {
-            printf("\n Acertou! \n %s", escondida);
-        }
-        else
-        {
-            printf("\n Errou!");
-            tentativas--;
-        }
-    }
+    // while (tentativas > 0 && ganhou == 0)
+    // {
+    //     printf("\n Voce tem %d tentativas", tentativas);
+
+    //     chute = chutarLetra(sorteada, escondida);
+    //     printf("Chute - %d", chute);
+    //     if (chute > 0)
+    //     {
+    //         printf("\n Acertou! \n %s", escondida);
+    //     }
+    //     else
+    //     {
+    //         printf("\n Errou!");
+    //     }
+
+    //     if (strstr(sorteada, escondida) != 0)
+    //     {
+    //         ganhou = 1;
+    //     }
+
+    //     tentativas--;
+    // }
+
+    // if (ganhou)
+    // {
+    //     printf("\n Voce ganhou!");
+    // }
 }
