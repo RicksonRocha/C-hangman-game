@@ -41,8 +41,9 @@ int chutarLetra(char sorteada[Coluna], char *p_escondida)
     int i = 0, len = 0, acerto = 0;
     char letra;
 
-    printf("\n Chute: ");
+    printf("\n Digite uma letra: ");
     scanf("%c", &letra);
+    printf("\n Digitado: %c", letra);
 
     len = strlen(sorteada);
     for (i = 0; i < len; i++)
@@ -75,35 +76,45 @@ void main()
     printf("\n -> %s ", sorteada);
     printf("\n -> %s ", escondida);
 
-    printf("\n Voce tem %d tentativas", tentativas);
-    chute = chutarLetra(sorteada, escondida);
-    printf("\n Chute %d", chute);
+    while (tentativas > 0)
+    {
+        printf("\n Voce tem %d tentativas", tentativas);
+        chute = chutarLetra(sorteada, escondida);
+        printf("\n Chute %d", chute);
+        if (chute)
+        {
+            printf("\n Acertou! \n %s", escondida);
+        }
+        else
+        {
+            printf("\n Errou!");
+            tentativas--;
+        }
+    }
 
-    // while (tentativas > 0 && ganhou == 0)
+    // while (tentativas > 0 && ganhou != 1)
     // {
     //     printf("\n Voce tem %d tentativas", tentativas);
-
     //     chute = chutarLetra(sorteada, escondida);
-    //     printf("Chute - %d", chute);
-    //     if (chute > 0)
+    //     printf("\n Chute %d", chute);
+    //     if (chute)
     //     {
     //         printf("\n Acertou! \n %s", escondida);
     //     }
     //     else
     //     {
     //         printf("\n Errou!");
+    //         tentativas--;
     //     }
 
     //     if (strstr(sorteada, escondida) != 0)
     //     {
     //         ganhou = 1;
     //     }
-
-    //     tentativas--;
     // }
 
-    // if (ganhou)
-    // {
-    //     printf("\n Voce ganhou!");
-    // }
+    if (ganhou)
+    {
+        printf("\n Voce ganhou!");
+    }
 }
